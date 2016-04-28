@@ -133,3 +133,131 @@ class Pycs:
 
     	return self.process(url,data)
 
+    def getunverifiedaccountwithdraws(self):
+        """
+		Gets a list of unverified Withdrawals for a Wallet.
+		"""
+
+    	data = {
+        	"apiKey" : self.key
+    	}
+
+    	url = "/auth/getunverifiedaccountwithdraws"
+
+    	return self.process(url,data)
+
+    def newaccount(self,walletname,info):
+        """
+		Create a new Account/ Wallet.
+		"""
+
+    	data = {
+        	"apiKey" : self.key,
+			"walletName" : walletname,
+			"info" : info
+    	}
+
+    	url = "/auth/newaccount"
+
+    	return self.process(url,data)
+
+
+    def sendtoaddress(self,fromwid,satoshis,msg,toaddress):
+        """
+		Sends Bitcoin to any On Chain Address. Fees of 0.0001 BTC is added to withdrawal amount.
+		"""
+
+    	data = {
+        	"apiKey" : self.key,
+			"fromWalletID" : fromwid,
+			"satoshis" : satoshis,
+			"msg" : msg,
+			"toAddress" : toaddress
+    	}
+
+    	url = "/auth/sendtoaddress"
+
+    	return self.process(url,data)
+
+
+    def verifyaccountwithdrawcode(self,code):
+        """
+		Verifies a Withdrawal Code and processes the Transaction.
+		"""
+
+    	data = {
+        	"apiKey" : self.key,
+			"code" : code
+    	}
+
+    	url = "/auth/verifyaccountwithdrawcode"
+
+    	return self.process(url,data)
+
+
+    def cancelunverifiedaccountcoinwithdrawal(self,address,satoshis,withdrawid,reason):
+        """
+		Cancels an unverified Withdrawal Code the Transaction.
+		"""
+
+    	data = {
+        	"apiKey" : self.key,
+			"address" : address,
+			"satoshis" : satoshis,
+			"withdrawID" : withdrawid,
+			"reason" : reason
+    	}
+
+    	url = "/auth/cancelunverifiedaccountcoinwithdrawal"
+
+    	return self.process(url,data)
+
+
+    def getaccountwithdrawverifycode(self,withdrawid):
+        """
+		Gets the account withdrawal Verification Code for a Withdraw ID.
+		"""
+
+    	data = {
+        	"apiKey" : self.key,
+			"withdrawID" : withdrawid
+    	}
+
+    	url = "/auth/getaccountwithdrawverifycode"
+
+    	return self.process(url,data)
+
+
+    def sendtotradeengine(self,fromwalletid,satoshis,msg):
+        """
+		Sends Bitcoin to Trade Engine. Can send as low as 1 satoshi.
+		"""
+
+    	data = {
+        	"apiKey" : self.key,
+			"fromWalletID" : fromwalletid,
+			"satoshis" : satoshis,
+			"msg" : msg
+    	}
+
+    	url = "/auth/sendtotradeengine"
+
+    	return self.process(url,data)
+
+
+    def newaddress(self,walletid,info):
+        """
+		Generates a new Bitcoin Address in an account/ wallet.
+		"""
+
+    	data = {
+        	"apiKey" : self.key,
+			"walletID" : walletid,
+			"info" : info
+    	}
+
+    	url = "/auth/newaddress"
+
+    	return self.process(url,data)
+
+	
