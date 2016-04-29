@@ -20,6 +20,10 @@ class Pycs:
             message = response["error"] if("error" in response.keys()) else response["message"]
             raise CSError(message)
 
+        if "result" in response.keys() and "error" in response["result"][0]:
+            message = response["result"][0]["error"]
+            raise CSError(message)        
+    
         return response
 
 
@@ -364,4 +368,198 @@ class Pycs:
         }
 
         url = "/auth/getminuserask"
+        return self.process(url,data)
+
+
+    def getunverifiedcoinwithdraws(self):
+        """
+        Returns all unverified coin withdrawal data. This call is needed to
+        get withdrawID for getcoinverifycode()
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/getunverifiedcoinwithdraws"
+        return self.process(url,data)
+
+    def voucherdetails(self,vochercode):
+        """
+        Returns the Details of any Coinsecure Vocher
+        """
+    
+        data = {
+            "apiKey" : self.key,
+            "vouchercode" : vochercode
+        }
+
+        url = "/auth/voucherdetails"
+        return self.process(url,data)
+
+
+    def getfiatbankdetails(self):
+        """
+        Returns users INR Account Bank details
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/getfiatbankdetails"
+        return self.process(url,data)
+
+
+    def intradecoinbalance(self):
+        """
+        Returns users in trade or pending coin balance in satoshi.
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/intradecoinbalance"
+        return self.process(url,data)
+
+
+    def getcoinverifycode(self,withdrawid):
+        """
+        Returns the final code that can be used to verify the payment.
+        You can get the withdrawID from getunverifiedcoinwithdraws()
+        """
+    
+        data = {
+            "apiKey" : self.key,
+            "withdrawID" : withdrawid
+        }
+
+        url = "/auth/getcoinverifycode"
+        return self.process(url,data)
+
+
+    def getunverifiedfiatwithdraws(self):
+        """
+        Returns unverified fiat withdrawal details for a user.
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/getunverifiedfiatwithdraws"
+        return self.process(url,data)
+
+    def fiatfeepercentage(self):
+        """
+        Returns users fiat fee in percentage.
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/fiatfeepercentage"
+        return self.process(url,data)
+
+    def intradefiatbalance(self):
+        """
+        Returns users in trade or pending fiat balance in satoshi.
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/intradefiatbalance"
+        return self.process(url,data)
+
+
+    def actualfiatbalance(self):
+        """
+        Returns users total fiat balance in paisa.
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/actualfiatbalance"
+        return self.process(url,data)
+
+
+    def getcoinaddresses(self):
+        """
+        Returns users bitcoin deposit addresses.
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/getcoinaddresses"
+        return self.process(url,data)
+
+    def coinbalance(self):
+        """
+        Returns users usable coin balance in satoshi.
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/coinbalance"
+        return self.process(url,data)
+
+
+    def actualcoinbalance(self):
+        """
+        Returns users total coin balance in paisa.
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/actualcoinbalance"
+        return self.process(url,data)
+
+    def coinfeepercentage(self):
+        """
+        Returns users coin fee in percentage.
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/coinfeepercentage"
+        return self.process(url,data)
+
+    def getfiatverifycode(self,withdrawid):
+        """
+        Returns the fiat withdrawal verification code.
+        """
+    
+        data = {
+            "apiKey" : self.key,
+            "withdrawID" : withdrawid
+        }
+
+        url = "/auth/getfiatverifycode"
+        return self.process(url,data)
+
+
+    def fiatbalance(self):
+        """
+        Returns users usable fiat balance in paisa.
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/fiatbalance"
         return self.process(url,data)
