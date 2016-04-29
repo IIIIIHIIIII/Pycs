@@ -1,6 +1,10 @@
 import requests
 import json
 
+class CSError(Exception):
+	pass
+
+
 class Pycs:
 
     def __init__(self, apikey, wid):
@@ -8,22 +12,18 @@ class Pycs:
         self.wid = wid
 
     def process(self,url,data):
-        try:
-            response = requests.post("https://api.coinsecure.in/v0%s" %(url), 
+        
+		response = requests.post("https://api.coinsecure.in/v0%s" %(url), 
                                     data=json.dumps(data), 
                                     headers={"content-type":"text/json"}).json()
 
-            if "error" in response.values() or "error" in response.keys(): 
-                raise Exception()
+		if "error" in response.values() or "error" in response.keys(): 
+			message = response["error"] if("error" in response.keys()) else response["message"]
+			raise CSError(message)
 
-            return response
+		return response
 
-        except Exception:
-            message = response["error"] if("error" in response.keys()) else response["message"]	
-            print "Error: ",message
-
-        return response
-
+       
     def getallaccountsconfirmedbalance(self):
         """
                 Gets the total confirmed balance across all accounts and addresses
