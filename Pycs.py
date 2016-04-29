@@ -703,3 +703,63 @@ class Pycs:
 
         url = "/auth/verifyfiatwithdrawal"
         return self.process(url,data)
+
+
+    def allbankdata(self):
+        """
+        Returns a short summary of bank data & account related information.
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/allbankdata"
+        return self.process(url,data)
+
+
+    def timeline(self):
+        """
+        Returns timeline data. This data shows a comprehensive list of all
+		Transactions of the user.
+        """
+    
+        data = {
+            "apiKey" : self.key
+        }
+
+        url = "/auth/timeline"
+        return self.process(url,data)
+
+
+    def verifycoinwithdrawal(self,code):
+        """
+        Verifies the coin withdrawal request. You can get the unverified codes
+		from getunverifiedcoinwithdraws()
+        """
+    
+        data = {
+            "apiKey" : self.key,
+			"code" : code
+        }
+
+        url = "/auth/verifycoinwithdrawal"
+        return self.process(url,data)
+
+
+    def cancelunverifiedcoinwithdrawal(self,address,satoshis,withdrawid,reason):
+        """
+        Verifies the coin withdrawal request. You can get the unverified codes
+		from getunverifiedcoinwithdraws.
+        """
+    
+        data = {
+            "apiKey" : self.key,
+			"address" : address,
+			"satoshis" : satoshis,
+			"withdrawID" : withdrawid,
+			"reason" : reason
+        }
+
+        url = "/auth/cancelunverifiedcoinwithdrawal"
+        return self.process(url,data)
