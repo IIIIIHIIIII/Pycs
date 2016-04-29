@@ -563,3 +563,143 @@ class Pycs:
 
         url = "/auth/fiatbalance"
         return self.process(url,data)
+
+
+    def sendcoin(self,satoshis,toaddr,msg):
+        """
+        Send Coins to any valid address. The result needs to be used to 
+		call getcoinverifycode()
+        """
+    
+        data = {
+            "apiKey" : self.key,
+			"satoshis" : satoshis,
+			"toAddr" : toaddr,
+			"msg" : msg
+        }
+
+        url = "/auth/sendcoin"
+        return self.process(url,data)
+
+
+    def createask(self,rate,vol):
+        """
+        Create a new ask order. KYC & Bank Link must be complete.
+        """
+    
+        data = {
+            "apiKey" : self.key,
+			"rate" : rate,
+			"vol" : vol
+        }
+
+        url = "/auth/createask"
+        return self.process(url,data)
+
+
+    def cancelbid(self,orderid):
+        """
+        Cancel bid order. You can get your OrderID from alluserbids.
+        """
+    
+        data = {
+            "apiKey" : self.key,
+			"orderID" : orderid
+        }
+
+        url = "/auth/cancelbid"
+        return self.process(url,data)
+
+
+    def withdrawfiat(self,fiat,acctnickname,msg):
+        """
+        Send fiat to a bank account. The result needs to be used to call
+		getfiatverifycode()
+        """
+    
+        data = {
+            "apiKey" : self.key,
+			"fiat" : fiat,
+			"acctNickName" : acctnickname,
+			"msg" : msg
+        }
+
+        url = "/auth/withdrawfiat"
+        return self.process(url,data)
+
+
+    def createbid(self,rate,vol):
+        """
+        Create a new Bid Order. KYC & Bank Link must be complete.
+        """
+    
+        data = {
+            "apiKey" : self.key,
+			"rate" : rate,
+			"vol" : vol
+        }
+
+        url = "/auth/createbid"
+        return self.process(url,data)
+
+    def cancelunverifiedfiatwithdrawal(self,address,satoshis,withdrawid,reason):
+        """
+        Verifies the coin withdrawal Request. You can get the unverified codes
+		from getunverifiedfiatwithdraws.
+        """
+    
+        data = {
+            "apiKey" : self.key,
+			"address" : address,
+			"satoshis" : satoshis,
+			"withdrawID" : withdrawid,
+			"reason" : reason
+        }
+
+        url = "/auth/cancelunverifiedfiatwithdrawal"
+        return self.process(url,data)
+
+
+    def cancelask(self,orderid):
+        """
+        Cancels the ask order. You can get your OrderID from alluserasks.
+        """
+    
+        data = {
+            "apiKey" : self.key,
+			"orderID" : orderid
+        }
+
+        url = "/auth/cancelask"
+        return self.process(url,data)
+
+
+    def redeemvoucher(self,vouchercode,pin):
+        """
+        Redeems a Coinsecure Voucher. Pin can be sent only if needed
+		else can be avoided from the request.
+        """
+    
+        data = {
+            "apiKey" : self.key,
+			"vouchercode" : vouchercode,
+			"pin" : pin
+        }
+
+        url = "/auth/redeemvoucher"
+        return self.process(url,data)
+
+
+    def verifyfiatwithdrawal(self,code):
+        """
+        Verifies the coin withdrawal request. You can get the unverified codes
+		from getunverifiedfiatwithdraws()
+        """
+    
+        data = {
+            "apiKey" : self.key,
+			"code" : code
+        }
+
+        url = "/auth/verifyfiatwithdrawal"
+        return self.process(url,data)
